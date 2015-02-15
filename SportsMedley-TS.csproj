@@ -19,15 +19,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="assets\images\dodgeball-active.png" />
+    <Content Include="assets\images\dodgeball-inactive.png" />
+    <Content Include="assets\images\dodgeball-thrown.png" />
     <Content Include="index.html" />
     <Content Include="libs\matter-0.8.0.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="scripts\entities\Ball.ts" />
-    <TypeScriptCompile Include="scripts\entities\Equipment.ts" />
-    <TypeScriptCompile Include="scripts\entities\Pawn.ts" />
+    <TypeScriptCompile Include="scripts\entities\base\Ball.ts" />
+    <TypeScriptCompile Include="scripts\entities\base\Equipment.ts" />
+    <TypeScriptCompile Include="scripts\entities\base\Pawn.ts" />
+    <TypeScriptCompile Include="scripts\entities\Dodgeball.ts" />
     <TypeScriptCompile Include="scripts\entities\Player.ts" />
     <TypeScriptCompile Include="scripts\SportsMedleyGame.ts" />
   </ItemGroup>
@@ -43,6 +47,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="assets\sounds\" />
     <Folder Include="scripts\input\" />
   </ItemGroup>
   <PropertyGroup>

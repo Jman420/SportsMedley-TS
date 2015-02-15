@@ -1,4 +1,4 @@
-﻿module SportsMedley.Entities {
+﻿module SportsMedley.Entities.Base {
     export class Equipment extends Pawn {
         holder: Player;
 

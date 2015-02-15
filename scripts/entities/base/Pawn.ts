@@ -1,10 +1,12 @@
-﻿module SportsMedley.Entities {
+﻿module SportsMedley.Entities.Base {
     export class Pawn {
+        game: SportsMedleyGame;
         world: any;
         body: any;
         composite: any;
 
         constructor(game: SportsMedleyGame) {
+            this.game = game;
             this.world = game.getWorld();
         }
 

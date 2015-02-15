@@ -3,13 +3,22 @@
 
     export class SportsMedleyGame {
         engine: any;
+        gameType: string;
 
         constructor(domNode: HTMLElement) {
 
         }
 
-        getWorld(): any {
+        public getWorld(): any {
             return this.engine.world;
+        }
+
+        public playSound(name: string): void {
+            
+        }
+
+        public score(team: number, amount: number): void {
+            
         }
     }
 }
