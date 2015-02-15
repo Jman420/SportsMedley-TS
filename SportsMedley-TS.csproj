@@ -20,10 +20,16 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="index.html" />
+    <Content Include="libs\matter-0.8.0.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="scripts\entities\Ball.ts" />
+    <TypeScriptCompile Include="scripts\entities\Equipment.ts" />
+    <TypeScriptCompile Include="scripts\entities\Pawn.ts" />
+    <TypeScriptCompile Include="scripts\entities\Player.ts" />
+    <TypeScriptCompile Include="scripts\SportsMedleyGame.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.md">
@@ -35,6 +41,9 @@
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="scripts\input\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
