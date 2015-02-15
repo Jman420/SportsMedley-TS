@@ -22,6 +22,15 @@
     <Content Include="assets\images\dodgeball-active.png" />
     <Content Include="assets\images\dodgeball-inactive.png" />
     <Content Include="assets\images\dodgeball-thrown.png" />
+    <Content Include="assets\images\flag-active.png" />
+    <Content Include="assets\images\flag-inactive.png" />
+    <Content Include="assets\images\flyingdisc-active.png" />
+    <Content Include="assets\images\flyingdisc-inactive.png" />
+    <Content Include="assets\images\flyingdisc-thrown.png" />
+    <Content Include="assets\images\hockey-stick-inactive.png" />
+    <Content Include="assets\images\hockey-stick.png" />
+    <Content Include="assets\images\hockeypuck-inactive.png" />
+    <Content Include="assets\images\hockeypuck.png" />
     <Content Include="index.html" />
     <Content Include="libs\matter-0.8.0.js" />
     <Content Include="web.config" />
@@ -30,9 +39,16 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="scripts\entities\base\Ball.ts" />
     <TypeScriptCompile Include="scripts\entities\base\Equipment.ts" />
+    <TypeScriptCompile Include="scripts\entities\Goal.ts" />
+    <TypeScriptCompile Include="scripts\entities\Gymnasium.ts" />
+    <TypeScriptCompile Include="scripts\entities\HockeyPuck.ts" />
     <TypeScriptCompile Include="scripts\entities\base\Pawn.ts" />
     <TypeScriptCompile Include="scripts\entities\Dodgeball.ts" />
+    <TypeScriptCompile Include="scripts\entities\Flag.ts" />
+    <TypeScriptCompile Include="scripts\entities\FlyingDisc.ts" />
+    <TypeScriptCompile Include="scripts\entities\HockeyStick.ts" />
     <TypeScriptCompile Include="scripts\entities\Player.ts" />
+    <TypeScriptCompile Include="scripts\entities\base\Wall.ts" />
     <TypeScriptCompile Include="scripts\SportsMedleyGame.ts" />
   </ItemGroup>
   <ItemGroup>

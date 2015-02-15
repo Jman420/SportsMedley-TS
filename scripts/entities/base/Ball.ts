@@ -16,7 +16,7 @@
             return false;
         }
 
-        public tick(): void {
+        public tick(tickEvent: any): void {
             if (this.isOutOfWorld()) {
                 var correctiveTranslation = {
                     x: (this.world.bounds.max.x + this.world.bounds.min.x) / 2 - this.body.position.x,
@@ -27,7 +27,7 @@
             }
         }
 
-        private createBody(x: number, y: number): void {
+        private createBody(x: number, y: number): any {
             var newBody = Matter.Bodies.circle(x, y, this.radius, this.bodyOptions);
             newBody.pawn = this;
 

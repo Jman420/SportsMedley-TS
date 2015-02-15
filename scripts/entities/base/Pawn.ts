@@ -20,7 +20,7 @@
             }
         }
 
-        public tick(): void {
+        public tick(tickEvent: any): void {
             throw new Error("Pawn.tick() is an abstract method.");
         }
     }
