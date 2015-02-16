@@ -23,6 +23,8 @@
         dodgeballs: Dodgeball[];
         flag: Flag;
         flyingDisc: FlyingDisc;
+        hockeyPuck: HockeyPuck;
+        hockeySticks: HockeyStick[];
 
         constructor(game: SportsMedleyGame) {
             this.game = game;
@@ -33,11 +35,14 @@
             this.centerX = (this.world.bounds.max.x + this.world.bounds.min.x) / 2;
             this.centerY = (this.world.bounds.max.y + this.world.bounds.min.y) / 2;
 
-            this.walls = this.createWalls();
-            this.goals = this.createGoals();
-            this.dodgeballs = this.createDodgeballs();
-            this.flag = this.createFlag();
-            this.flyingDisc = this.createFlyingDisc();
+            this.createWalls();
+            this.createGoals();
+            this.createDodgeballs();
+            this.createFlag();
+            this.createFlyingDisc();
+            this.createHockeyPuck();
+
+            this.hockeySticks = [];
         }
 
         public getEndZone(pawn: Base.Pawn): number {
@@ -53,18 +58,19 @@
         }
 
         public createFlyingDisc(): FlyingDisc {
-            var result: FlyingDisc;
+            var newFlyingDisc: FlyingDisc;
             var randomSide = Math.random();
 
             if (randomSide < 1 / 3) {
-                result = new FlyingDisc(this.game, this.centerX, this.wallThickness + FlyingDisc.prototype.radius);
+                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.wallThickness + FlyingDisc.prototype.radius);
             } else if (randomSide > 1 / 3 && randomSide < 2 / 3) {
-                result = new FlyingDisc(this.game, this.centerX, this.gymHeight - this.wallThickness - FlyingDisc.prototype.radius);
+                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.gymHeight - this.wallThickness - FlyingDisc.prototype.radius);
             } else {
-                result = new FlyingDisc(this.game, this.centerX, this.centerY);
+                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.centerY);
             }
 
-            return result;
+            this.flyingDisc = newFlyingDisc;
+            return newFlyingDisc;
         }
 
         public createHockeyPuck(): HockeyPuck {
@@ -74,23 +80,33 @@
             var x = w / 4 + w / 2 * Math.round(Math.random());
             var y = h / 4 + h / 2 * Math.round(Math.random());
 
-            return new HockeyPuck(this.game, x, y);
+            this.hockeyPuck = new HockeyPuck(this.game, x, y);
+            return this.hockeyPuck;
         }
 
-        private createWalls(): Base.Wall[] {
-            return [
+        public createHockeyStick(x, y): HockeyStick {
+            var newHockeyStick = new HockeyStick(this.game, x, y);
+            this.hockeySticks.push(newHockeyStick);
+
+            return newHockeyStick;
+        }
+
+        private createWalls(): Base.Wall[]{
+            this.walls = [
                 new Base.Wall(this.game, this.centerX, -100 + this.wallThickness, this.gymWidth, 200), // top,
                 new Base.Wall(this.game, this.world.bounds.max.x + 100 - this.wallThickness, this.centerY, 200, this.gymHeight), // right
                 new Base.Wall(this.game, this.centerX, this.world.bounds.max.y + 100 - this.wallThickness, this.gymWidth, 200), // bottom,
                 new Base.Wall(this.game, -100 + this.wallThickness, this.centerY, 200, this.gymHeight) // left
             ];
+            return this.walls;
         }
 
-        private createGoals(): Goal[] {
-            return [
+        private createGoals(): Goal[]{
+            this.goals = [
                 new Goal(this.game, this.world.bounds.min.x + this.goalBuffer + this.wallThickness, this.centerY, 0),
                 new Goal(this.game, this.world.bounds.max.x - this.goalBuffer - this.wallThickness, this.centerY, 1)
             ];
+            return this.goals;
         }
 
         private createDodgeballs(): Dodgeball[] {
@@ -103,11 +119,13 @@
                 newDodgeballs.push(newDodgeball);
             }
 
+            this.dodgeballs = newDodgeballs;
             return newDodgeballs;
         }
 
         private createFlag(): Flag {
-            return new Flag(this.game, this.centerX, this.centerY);
+            this.flag = new Flag(this.game, this.centerX, this.centerY);
+            return this.flag;
         }
     }
 }

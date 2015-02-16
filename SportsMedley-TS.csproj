@@ -31,6 +31,12 @@
     <Content Include="assets\images\hockey-stick.png" />
     <Content Include="assets\images\hockeypuck-inactive.png" />
     <Content Include="assets\images\hockeypuck.png" />
+    <Content Include="assets\images\player-team0-idle.png" />
+    <Content Include="assets\images\player-team0-walk0.png" />
+    <Content Include="assets\images\player-team0-walk1.png" />
+    <Content Include="assets\images\player-team1-idle.png" />
+    <Content Include="assets\images\player-team1-walk0.png" />
+    <Content Include="assets\images\player-team1-walk1.png" />
     <Content Include="index.html" />
     <Content Include="libs\matter-0.8.0.js" />
     <Content Include="web.config" />
@@ -49,6 +55,8 @@
     <TypeScriptCompile Include="scripts\entities\HockeyStick.ts" />
     <TypeScriptCompile Include="scripts\entities\Player.ts" />
     <TypeScriptCompile Include="scripts\entities\base\Wall.ts" />
+    <TypeScriptCompile Include="scripts\input\Gamepad.ts" />
+    <TypeScriptCompile Include="scripts\input\Joystick.ts" />
     <TypeScriptCompile Include="scripts\SportsMedleyGame.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -64,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\sounds\" />
-    <Folder Include="scripts\input\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
