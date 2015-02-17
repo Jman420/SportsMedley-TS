@@ -18,7 +18,7 @@
         public tick(tickEvent: any): void {
             this.updateTexture();
 
-            if (this.holder && this.game.gameType == 'Kill The Carrier' || this.game.gameType == 'Bonus') {
+            if (this.holder && (this.game.gameType == 'Kill The Carrier' || this.game.gameType == 'Bonus')) {
                 this.lastHeld = tickEvent.timestamp;
                 if (tickEvent.timestamp - this.lastPoint > this.pointsPerSecond * 1000) {
                     this.game.score(this.holder.team, 1 / 30);

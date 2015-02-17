@@ -145,7 +145,7 @@
         }
 
         private canWalk(): boolean {
-            return (this.possession && this.possession.bodyB.pawn instanceof FlyingDisc);
+            return !(this.possession && this.possession.bodyB.pawn instanceof FlyingDisc);
         }
 
         private equip(equipment: Base.Equipment): void {

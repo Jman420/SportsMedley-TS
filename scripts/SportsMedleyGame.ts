@@ -35,11 +35,14 @@ module SportsMedley {
             return this.engine.world;
         }
 
-        public playSound(name: string): void {}
+        public playSound(name: string): void {
+            var audio: HTMLAudioElement = <HTMLAudioElement>document.querySelector('audio[data-sound=' + name + ']');
+            if (audio)
+                audio.play();
+        }
 
         public score(team: number, value: number): void {
             if (this.players.length > 1 && this.gamepadListener && !this.gamepadListener.setupPlayer) {
-                console.info("Team %s got a point in %s", team, this.gameType);
                 this.scores[team][this.gameType]++;
                 this.scores[team].Total += value;
 
@@ -68,18 +71,17 @@ module SportsMedley {
                     }
                 }
             });
-
-            var canvas: HTMLCanvasElement = engine.render.canvas;
-
-            Matter.Render.setBackground(engine.render, "url(assets/images/gymnasium.png)");
+            engine.world.gravity.x = engine.world.gravity.y = 0;
+            Matter.Engine.run(engine);
 
             //NOTE: this is gross.
+            var engineCanvas: HTMLCanvasElement = engine.render.canvas;
             setTimeout(() => {
-                canvas.style.backgroundImage = "url(assets/images/gymnasium.png)";
-                canvas.style.backgroundSize = gameWidth + "px " + gameHeight + "px";
+                engineCanvas.style.backgroundImage = "url(assets/images/gymnasium.png)";
+                engineCanvas.style.backgroundSize = gameWidth + "px " + gameHeight + "px";
             });
 
-            canvas.addEventListener('click', () => {
+            engineCanvas.addEventListener('click', () => {
                 var htmlBody: any = document.body;
                 if (htmlBody.requestFullscreen) {
                     htmlBody.requestFullscreen();
@@ -92,17 +94,13 @@ module SportsMedley {
                 }
             });
 
-            engine.render.options.showAngleIndicator = true;
-
-            engine.world.gravity.x = engine.world.gravity.y = 0;
-
-            Matter.Engine.run(engine);
-
             return engine;
         }
 
         private reset(): void {
             this.rounds = 0;
+            this.gameType = null;
+            this.lastGameChangedAt = null;
 
             this.scores = [
                 { Total: 0, Bonus: 0 },
@@ -112,7 +110,6 @@ module SportsMedley {
                 this.scores[0][gameType] = 0;
                 this.scores[1][gameType] = 0;
             });
-
             this.updateScoreboard();
         }
 
@@ -134,7 +131,7 @@ module SportsMedley {
                 g.tick(tickEvent);
             });
 
-            if (this.timestamp - this.lastGameChangedAt > this.attentionSpan) {
+            if (!this.lastGameChangedAt || this.timestamp - this.lastGameChangedAt > this.attentionSpan) {
                 if (this.rounds >= this.totalRounds)
                     this.endGame();
                 else
@@ -145,8 +142,13 @@ module SportsMedley {
         private onCollisionActive(collisionEvent: any): void {
             collisionEvent.pairs.filter(pair => pair.bodyA.pawn && pair.bodyB.pawn)
                 .forEach(pair => {
-                    pair.bodyA.pawn.handleCollision(pair.bodyB.pawn);
-                    pair.bodyB.pawn.handleCollision(pair.bodyA.pawn);
+                    if (pair.bodyA.pawn.handleCollision) {
+                        pair.bodyA.pawn.handleCollision(pair.bodyB.pawn);
+                    }
+                    
+                    if (pair.bodyB.pawn.handleCollision) {
+                        pair.bodyB.pawn.handleCollision(pair.bodyA.pawn);
+                    }
                 });
         }
 

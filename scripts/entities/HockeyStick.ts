@@ -6,7 +6,7 @@
         constructor(game: SportsMedleyGame, x: number, y: number) {
             super(game);
 
-            this.createBody(x, y);
+            this.body = this.createBody(x, y);
             Matter.World.add(this.world, this.body);
         }
 
