@@ -1,6 +1,8 @@
 ﻿module SportsMedley.Entities {
     export class Dodgeball extends Base.Ball {
+        static dodgeballRadius: number = 10;
         hitMinSpeed: number = 5;
+        radius: number = Dodgeball.dodgeballRadius;
         bodyOptions: any = {
             restitution: 0.2,
             friction: 1,

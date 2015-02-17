@@ -62,31 +62,36 @@
             var randomSide = Math.random();
 
             if (randomSide < 1 / 3) {
-                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.wallThickness + FlyingDisc.prototype.radius);
+                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.wallThickness + FlyingDisc.discRadius);
             } else if (randomSide > 1 / 3 && randomSide < 2 / 3) {
-                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.gymHeight - this.wallThickness - FlyingDisc.prototype.radius);
+                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.gymHeight - this.wallThickness - FlyingDisc.discRadius);
             } else {
                 newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.centerY);
             }
 
             this.flyingDisc = newFlyingDisc;
+            Matter.World.add(this.world, this.flyingDisc.body);
+
             return newFlyingDisc;
         }
 
         public createHockeyPuck(): HockeyPuck {
-            var w = this.world.bounds.max.x;
-            var h = this.world.bounds.max.y;
+            var width = this.world.bounds.max.x;
+            var height = this.world.bounds.max.y;
 
-            var x = w / 4 + w / 2 * Math.round(Math.random());
-            var y = h / 4 + h / 2 * Math.round(Math.random());
+            var x = width / 4 + width / 2 * Math.round(Math.random());
+            var y = height / 4 + height / 2 * Math.round(Math.random());
 
             this.hockeyPuck = new HockeyPuck(this.game, x, y);
+            Matter.World.add(this.world, this.hockeyPuck.body);
+
             return this.hockeyPuck;
         }
 
         public createHockeyStick(x, y): HockeyStick {
             var newHockeyStick = new HockeyStick(this.game, x, y);
             this.hockeySticks.push(newHockeyStick);
+            Matter.World.add(this.world, newHockeyStick.body);
 
             return newHockeyStick;
         }
@@ -117,6 +122,8 @@
                 var newDodgeball: Dodgeball = new Dodgeball(this.game, this.centerX + Math.cos(direction) * centerCircleRadius,
                     this.centerY + Math.sin(direction) * centerCircleRadius);
                 newDodgeballs.push(newDodgeball);
+
+                Matter.World.add(this.world, newDodgeball.body);
             }
 
             this.dodgeballs = newDodgeballs;
@@ -125,6 +132,7 @@
 
         private createFlag(): Flag {
             this.flag = new Flag(this.game, this.centerX, this.centerY);
+            Matter.World.add(this.world, this.flag.body);
             return this.flag;
         }
     }

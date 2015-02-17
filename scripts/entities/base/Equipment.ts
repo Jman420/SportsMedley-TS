@@ -10,6 +10,10 @@
             return false;
         }
 
+        public swing(strength:number, direction: number): void {
+            throw new Error("Equipment.swing() is an abstract method.");
+        }
+
         public destroy(): void {
             if (this.holder) {
                 this.holder.dropEquipment();

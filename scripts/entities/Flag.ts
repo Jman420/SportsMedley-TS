@@ -13,7 +13,6 @@
             this.lastPoint = 0;
 
             this.body = this.createBody(x, y);
-            Matter.World.add(this.world, this.body);
         }
 
         public tick(tickEvent: any): void {

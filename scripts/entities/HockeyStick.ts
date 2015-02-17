@@ -26,16 +26,16 @@
         }
 
         public swing(strength: number, direction: number): void {
-            var bodiesInRange = this.world.bodies.filter(function(body) {
-                var dx = body.position.x - this.body.position.x;
-                var dy = body.position.y - this.body.position.y;
+            var bodiesInRange: any = this.world.bodies.filter(function(body) {
+                var dx: number = body.position.x - this.body.position.x;
+                var dy: number = body.position.y - this.body.position.y;
 
-                var dist = Math.sqrt(dx * dx + dy * dy);
+                var dist: number = Math.sqrt(dx * dx + dy * dy);
                 return dist < this.swingRange;
             }, this);
 
             bodiesInRange.forEach(function(ball) {
-                var force = {
+                var force: any = {
                     x: strength * this.swingForce * Math.cos(direction),
                     y: strength * this.swingForce * Math.sin(direction)
                 };

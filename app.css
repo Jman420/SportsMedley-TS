@@ -1,7 +1,36 @@
-﻿body {
-    font-family: 'Segoe UI', sans-serif;
+﻿body, html {
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
-span {
-    font-style: italic;
+#gamepadCanvasContainer {
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
 }
+
+#gametypeDisplay {
+    color: green;
+    height: 25px;
+    left: 25px;
+    line-height: 25px;
+    position: absolute;
+    top: 0;
+}
+
+#scoreboard {
+    color: green;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+}
+
+a { color: white; }

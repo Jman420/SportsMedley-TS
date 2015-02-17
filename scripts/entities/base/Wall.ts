@@ -8,7 +8,7 @@
         }
 
         private createBody(x: number, y: number, width: number, height: number): any {
-            var newBody = Matter.Bodies.rectangle(x, y, width, height, { isStatic: true });
+            var newBody: any = Matter.Bodies.rectangle(x, y, width, height, { isStatic: true });
             return newBody;
         }
     }

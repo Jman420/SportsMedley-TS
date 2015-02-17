@@ -6,11 +6,52 @@
     <title>TypeScript HTML App</title>
     <link rel="stylesheet" href="app.css" type="text/css" />
     <script src="libs/matter-0.8.0.js"></script>
+    <script src="scripts/entities/base/Pawn.js"></script>
+    <script src="scripts/entities/base/Ball.js"></script>
+    <script src="scripts/entities/base/Equipment.js"></script>
+    <script src="scripts/entities/base/Wall.js"></script>
+    
+    <script src="scripts/entities/HockeyStick.js"></script>
+    <script src="scripts/entities/HockeyPuck.js"></script>
+    <script src="scripts/entities/FlyingDisc.js"></script>
+    <script src="scripts/entities/Flag.js"></script>
+    <script src="scripts/entities/Dodgeball.js"></script>
+    <script src="scripts/entities/Goal.js"></script>
+    <script src="scripts/entities/Gymnasium.js"></script>
+    <script src="scripts/input/Joystick.js"></script>
+    <script src="scripts/input/Gamepad.js"></script>
+    <script src="scripts/input/GamepadListener.js"></script>
+    <script src="scripts/SportsMedleyGame.js"></script>
     <script src="app.js"></script>
 </head>
 <body>
-    <h1>TypeScript HTML App</h1>
+    <audio data-sound="whistle" src="assets/sounds/whistle.ogg"></audio>
 
-    <div id="content"></div>
+    <audio data-sound="dodgeball" src="assets/sounds/dodgeball.ogg"></audio>
+    <audio data-sound="hockey" src="assets/sounds/hockey.ogg"></audio>
+    <audio data-sound="ultimateflyingdisc" src="assets/sounds/ultimateflyingdisc.ogg"></audio>
+    <audio data-sound="killthecarrier" src="assets/sounds/killthecarrier.ogg"></audio>
+
+    <audio data-sound="gameover" src="assets/sounds/gameover.ogg"></audio>
+
+    <audio data-sound="throw-0" src="assets/sounds/throw-0.ogg"></audio>
+    <audio data-sound="throw-1" src="assets/sounds/throw-1.ogg"></audio>
+    <audio data-sound="throw-2" src="assets/sounds/throw-2.ogg"></audio>
+
+    <audio data-sound="cheer-short" src="assets/sounds/cheer-short.ogg"></audio>
+    <audio data-sound="dodgeball-score" src="assets/sounds/dodgeball-score.ogg"></audio>
+    <audio data-sound="buzzer" src="assets/sounds/buzzer.ogg"></audio>
+
+    <div id="scoreboard"></div>
+    <div id="gametypeDisplay"></div>
+    <div id="gamepadCanvasContainer">
+        Left Stick
+        <div id="leftStickCanvasContainer">
+        </div>
+        Right Stick
+        <div id="rightStickCanvasContainer">
+        </div>
+        <a href="help.html">Instructions</a>
+    </div>
 </body>
 </html>

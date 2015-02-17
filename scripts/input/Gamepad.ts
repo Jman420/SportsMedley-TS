@@ -1,11 +1,17 @@
 ﻿module SportsMedley.Input {
     export class Gamepad {
-        leftJoystick: Joystick = undefined;
-        rightJoystick: Joystick = undefined;
-        input: any = undefined;
+        leftJoystick: Joystick;
+        rightJoystick: Joystick;
+        input: any;
+
+        constructor() {
+            this.leftJoystick = undefined;
+            this.rightJoystick = undefined;
+            this.input = undefined;
+        }
 
         public setupComplete(): boolean {
-            return this.leftJoystick !== undefined && this.rightJoystick !== undefined;
+            return Boolean(this.leftJoystick && this.rightJoystick);
         }
 
         public getLeftHorizontalAxis(): number {

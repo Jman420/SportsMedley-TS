@@ -27,6 +27,7 @@
     <Content Include="assets\images\flyingdisc-active.png" />
     <Content Include="assets\images\flyingdisc-inactive.png" />
     <Content Include="assets\images\flyingdisc-thrown.png" />
+    <Content Include="assets\images\gymnasium.png" />
     <Content Include="assets\images\hockey-stick-inactive.png" />
     <Content Include="assets\images\hockey-stick.png" />
     <Content Include="assets\images\hockeypuck-inactive.png" />
@@ -37,6 +38,19 @@
     <Content Include="assets\images\player-team1-idle.png" />
     <Content Include="assets\images\player-team1-walk0.png" />
     <Content Include="assets\images\player-team1-walk1.png" />
+    <Content Include="assets\sounds\buzzer.ogg" />
+    <Content Include="assets\sounds\cheer-short.ogg" />
+    <Content Include="assets\sounds\dodgeball-score.ogg" />
+    <Content Include="assets\sounds\dodgeball.ogg" />
+    <Content Include="assets\sounds\gameover.ogg" />
+    <Content Include="assets\sounds\hockey.ogg" />
+    <Content Include="assets\sounds\killthecarrier.ogg" />
+    <Content Include="assets\sounds\throw-0.ogg" />
+    <Content Include="assets\sounds\throw-1.ogg" />
+    <Content Include="assets\sounds\throw-2.ogg" />
+    <Content Include="assets\sounds\ultimateflyingdisc.ogg" />
+    <Content Include="assets\sounds\whistle.ogg" />
+    <Content Include="help.html" />
     <Content Include="index.html" />
     <Content Include="libs\matter-0.8.0.js" />
     <Content Include="web.config" />
@@ -56,6 +70,7 @@
     <TypeScriptCompile Include="scripts\entities\Player.ts" />
     <TypeScriptCompile Include="scripts\entities\base\Wall.ts" />
     <TypeScriptCompile Include="scripts\input\Gamepad.ts" />
+    <TypeScriptCompile Include="scripts\input\GamepadListener.ts" />
     <TypeScriptCompile Include="scripts\input\Joystick.ts" />
     <TypeScriptCompile Include="scripts\SportsMedleyGame.ts" />
   </ItemGroup>
@@ -70,9 +85,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="assets\sounds\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>

@@ -1,7 +1,10 @@
 ﻿module SportsMedley.Entities {
     export class FlyingDisc extends Base.Ball {
+        static discRadius: number = 10;
+
         bodyOptions: any = { restitution: 0 };
         landedSpeed: number = 5;
+        radius: number = FlyingDisc.discRadius;
 
         possessor: Player;
 
