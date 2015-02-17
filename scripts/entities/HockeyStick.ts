@@ -2,22 +2,32 @@
     export class HockeyStick extends Base.Equipment {
         swingRange: number = 100;
         swingForce: number = 0.02;
+        pickUpCooldown: number = 300;
+
+        lastHeld: number;
 
         constructor(game: SportsMedleyGame, x: number, y: number) {
             super(game);
 
             this.body = this.createBody(x, y);
+            this.lastHeld = 0;
         }
 
         public tick(tickEvent: any) {
             this.updateTexture();
 
-            if (this.holder && (this.game.gameType != 'Hockey' && this.game.gameType != 'Bonus'))
-                this.holder.dropEquipment();
+            if (this.holder) {
+                if (!this.isActive()) {
+                    this.holder.dropEquipment();
+                } else {
+                    this.lastHeld = tickEvent.timestamp;
+                }
+            }
+
         }
 
         public canEquip(): boolean {
-            return (this.game.gameType == 'Hockey' || this.game.gameType == 'Bonus') && !this.holder;
+            return this.isActive() && !this.holder && this.game.timestamp - this.lastHeld > this.pickUpCooldown;
         }
 
         public canSwing(): boolean {
@@ -51,10 +61,14 @@
         }
 
         private updateTexture(): void {
-            if (this.game.gameType == 'Hockey' || this.game.gameType == 'Bonus')
-                this.body.render.sprite.texture = './assets/images/hockey-stick.png';
+            if (this.isActive())
+                this.body.render.sprite.texture = "./assets/images/hockey-stick.png";
             else
-                this.body.render.sprite.texture = './assets/images/hockey-stick-inactive.png';
+                this.body.render.sprite.texture = "./assets/images/hockey-stick-inactive.png";
+        }
+
+        private isActive(): boolean {
+            return this.game.gameType == "Hockey" || this.game.gameType == "Bonus";
         }
     }
 }

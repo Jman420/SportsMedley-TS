@@ -19,7 +19,7 @@
             this.updateTexture();
 
             if (this.holder) {
-                if (this.game.gameType == 'Kill The Carrier' || this.game.gameType == 'Bonus') {
+                if (this.isActive()) {
                     this.lastHeld = tickEvent.timestamp;
                     if (tickEvent.timestamp - this.lastPoint > this.pointsPerSecond * 1000) {
                         this.game.score(this.holder.team, 1 / 30);
@@ -32,8 +32,7 @@
         }
 
         public canEquip(): boolean {
-            return (this.game.gameType == 'Kill The Carrier' || this.game.gameType == 'Bonus')
-                && (this.game.timestamp - this.lastHeld) > this.pickUpCooldown;
+            return this.isActive() && (this.game.timestamp - this.lastHeld) > this.pickUpCooldown;
         }
 
         private createBody(x:number, y:number): any {
@@ -43,10 +42,14 @@
         }
 
         private updateTexture(): void {
-            if (this.game.gameType == 'Kill The Carrier' || this.game.gameType == 'Bonus')
-                this.body.render.sprite.texture = './assets/images/flag-active.png';
+            if (this.isActive())
+                this.body.render.sprite.texture = "./assets/images/flag-active.png";
             else
-                this.body.render.sprite.texture = './assets/images/flag-inactive.png';
+                this.body.render.sprite.texture = "./assets/images/flag-inactive.png";
+        }
+
+        private isActive(): boolean {
+            return this.game.gameType == "Kill The Carrier" || this.game.gameType == "Bonus";
         }
     }
 }

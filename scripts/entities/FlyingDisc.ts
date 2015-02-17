@@ -20,7 +20,7 @@
             this.body.frictionAir = (this.body.speed > this.landedSpeed ? 0.005 : 0.1);
 
             if (this.possessor) {
-                if (this.game.gameType == "Ultimate Flying Disc" || this.game.gameType == "Bonus") {
+                if (this.isActive()) {
                     var endZone = this.game.gym.getEndZone(this);
                     if (endZone !== null && endZone !== this.possessor.team) {
                         this.game.score(this.possessor.team, 1);
@@ -36,11 +36,11 @@
         }
 
         public canGrab(): boolean {
-            return (this.game.gameType == "Ultimate Flying Disc" || this.game.gameType == "Bonus") && !this.possessor;
+            return this.isActive() && !this.possessor;
         }
 
         private updateTexture(): void {
-            if (this.game.gameType == "Ultimate Flying Disc" || this.game.gameType == "Bonus") {
+            if (this.isActive()) {
                 this.body.render.sprite.texture = this.body.speed < this.landedSpeed ? "./assets/images/flyingdisc-active.png" : "./assets/images/flyingdisc-thrown.png";
             } else {
                 this.body.render.sprite.texture = "./assets/images/flyingdisc-inactive.png";
@@ -54,6 +54,10 @@
 
             this.game.gym.createFlyingDisc();
             this.destroy();
+        }
+
+        private isActive(): boolean {
+            return this.game.gameType == "Ultimate Flying Disc" || this.game.gameType == "Bonus";
         }
     }
 }

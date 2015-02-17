@@ -18,10 +18,10 @@
         }
 
         private updateTexture(): void {
-            if (this.game.gameType == 'Hockey' || this.game.gameType == 'Bonus')
-                this.body.render.sprite.texture = './assets/images/hockeypuck.png';
+            if (this.game.gameType == "Hockey" || this.game.gameType == "Bonus")
+                this.body.render.sprite.texture = "./assets/images/hockeypuck.png";
             else
-                this.body.render.sprite.texture = './assets/images/hockeypuck-inactive.png';
+                this.body.render.sprite.texture = "./assets/images/hockeypuck-inactive.png";
         }
     }
 }

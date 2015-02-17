@@ -207,7 +207,8 @@ module SportsMedley {
 
             var results: string[] = [];
 
-            for (var teamCounter: number = 1; teamCounter > 0; teamCounter--) {
+            results.push("Game Over!\n");
+            for (var teamCounter: number = 1; teamCounter >= 0; teamCounter--) {
                 var teamResults: string = (teamCounter ? "Red" : "Blue") + " Team";
 
                 for (var gameType in self.scores[teamCounter]) {
@@ -217,10 +218,9 @@ module SportsMedley {
                 }
 
                 teamResults += "\n Total: " + self.scores[teamCounter].Total;
-                results.push(teamResults);
+                results.push(teamResults + "\n");
             }
 
-            results.push("Game Over!");
             alert(results.join("\n"));
 
             this.reset();

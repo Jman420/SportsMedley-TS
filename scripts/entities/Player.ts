@@ -171,8 +171,6 @@
 
             ball.body.groupId = this.body.groupId;
 
-            this.translatePossessionAroundPlayer(ball, this.body.angle);
-
             this.possession = Matter.Constraint.create({
                 bodyA: this.body,
                 bodyB: ball.body,

@@ -13,7 +13,7 @@
         }
 
         public tick(): void {
-            if (this.possessor && this.game.gameType != "Dodgeball" && this.game.gameType != "Bonus") {
+            if (this.possessor && !this.isActive()) {
                 this.possessor.releasePossession();
             }
 
@@ -21,7 +21,7 @@
         }
 
         public canGrab(): boolean {
-            return (this.game.gameType == 'Dodgeball' || this.game.gameType == 'Bonus') && this.isThrown();
+            return this.isActive() && !this.isThrown();
         }
 
         public handleCollision(otherThing: any): void {
@@ -31,28 +31,30 @@
         }
 
         public hitPlayer(player: Player): void {
-            if (this.game.gameType != 'Dodgeball' && this.game.gameType != 'Bonus')
+            if (!this.isActive() || !this.isThrown()) {
                 return;
+            }
 
-            if (!this.isThrown())
-                return;
-
+            player.dropEquipment();
             if (this.lastThrownBy && this.lastThrownBy.team != player.team) {
-                player.dropEquipment();
-                this.game.playSound('dodgeball-score');
+                this.game.playSound("dodgeball-score");
                 this.game.score(this.lastThrownBy.team, 1 / 20);
             }
         }
 
         private updateTexture(): void {
-            if (this.game.gameType == 'Dodgeball' || this.game.gameType == 'Bonus')
-                this.body.render.sprite.texture = this.body.speed < this.hitMinSpeed ? './assets/images/dodgeball-active.png' : './assets/images/dodgeball-thrown.png';
+            if (this.isActive())
+                this.body.render.sprite.texture = this.isThrown() ? "./assets/images/dodgeball-thrown.png" : "./assets/images/dodgeball-active.png";
             else
-                this.body.render.sprite.texture = './assets/images/dodgeball-inactive.png';
+                this.body.render.sprite.texture = "./assets/images/dodgeball-inactive.png";
         }
 
         private isThrown(): boolean {
-            return this.body.speed < this.hitMinSpeed;
+            return this.body.speed > this.hitMinSpeed;
+        }
+
+        private isActive(): boolean {
+            return this.game.gameType == "Dodgeball" || this.game.gameType == "Bonus";
         }
     }
 }
