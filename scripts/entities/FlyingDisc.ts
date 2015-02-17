@@ -19,12 +19,16 @@
 
             this.body.frictionAir = (this.body.speed > this.landedSpeed ? 0.005 : 0.1);
 
-            if ((this.game.gameType == "Ultimate Flying Disc" || this.game.gameType == "Bonus") && this.possessor) {
-                var endZone = this.game.gym.getEndZone(this);
-                if (endZone !== null && endZone !== this.possessor.team) {
-                    this.game.score(this.possessor.team, 1);
-                    this.game.playSound("cheer-short");
-                    this.reset();
+            if (this.possessor) {
+                if (this.game.gameType == "Ultimate Flying Disc" || this.game.gameType == "Bonus") {
+                    var endZone = this.game.gym.getEndZone(this);
+                    if (endZone !== null && endZone !== this.possessor.team) {
+                        this.game.score(this.possessor.team, 1);
+                        this.game.playSound("cheer-short");
+                        this.reset();
+                    }
+                } else {
+                    this.possessor.releasePossession();
                 }
             }
 
@@ -44,6 +48,10 @@
         }
 
         private reset(): void {
+            if (this.possessor) {
+                this.possessor.releasePossession();
+            }
+
             this.game.gym.createFlyingDisc();
             this.destroy();
         }

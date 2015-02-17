@@ -35,12 +35,11 @@
 
             this.gamepad = new Input.Gamepad();
             this.body = this.createBody(x, y);
-
-            game.gym.createHockeyStick(this.body.position.x, this.body.position.y);
         }
 
         public addToWorld(): void {
             Matter.World.add(this.world, this.body);
+            this.game.gym.createHockeyStick(this.body.position.x, this.body.position.y);
         }
 
         public tick(tickEvent: any): void {
@@ -55,15 +54,13 @@
         }
 
         public handleCollision(otherEntity: any): void {
-            if (otherEntity instanceof Base.Ball) {
+            if (!this.possession && otherEntity instanceof Base.Ball) {
                 var ball: Base.Ball = <Base.Ball>otherEntity;
                 if (ball.canGrab()) {
                     this.grabBall(ball);
-                } else {
-                    this.dropEquipment();
                 }
             }
-            else if (otherEntity instanceof Base.Equipment) {
+            else if (!this.equipment && otherEntity instanceof Base.Equipment) {
                 var equipment: Base.Equipment = <Base.Equipment>otherEntity;
                 if (equipment.canEquip()) {
                     this.equip(equipment);
@@ -82,10 +79,25 @@
                 return;
             }
 
-            Matter.World.add(this.game.getWorld(), this.equipment.body);
+            Matter.World.add(this.world, this.equipment.body);
 
             this.equipment.holder = null;
             this.equipment = null;
+        }
+
+        public releasePossession(): void {
+            if (!this.possession) {
+                return;
+            }
+
+            var pawn: Base.Ball = this.possession.bodyB.pawn;
+
+            Matter.World.remove(this.world, this.possession);
+
+            pawn.body.groupId = 0;
+            pawn.possessor = null;
+
+            this.possession = null;
         }
 
         private createBody(x: number, y: number): any {
@@ -159,7 +171,7 @@
 
             ball.body.groupId = this.body.groupId;
 
-            this.translateBallAroundPlayer(ball, this.body.angle);
+            this.translatePossessionAroundPlayer(ball, this.body.angle);
 
             this.possession = Matter.Constraint.create({
                 bodyA: this.body,
@@ -171,7 +183,7 @@
                 }
             });
 
-            this.possession.length = 0;
+            this.possession.length = this.radius + ball.radius;
 
             Matter.World.add(this.world, this.possession);
         }
@@ -200,26 +212,15 @@
             };
             var ball: Base.Ball = this.possession.bodyB.pawn;
 
-            this.releaseBall();
-            this.translateBallAroundPlayer(ball, direction);
+            this.releasePossession();
+            this.translatePossessionAroundPlayer(ball, direction);
 
             ball.lastThrownBy = this;
             Matter.Body.applyForce(ball.body, ball.body.position, force);
             this.game.playSound("throw-" + Math.floor(strength * 2));
         }
 
-        private releaseBall(): void {
-            var pawn: Base.Ball = this.possession.bodyB.pawn;
-
-            Matter.World.remove(this.game.getWorld(), this.possession);
-
-            pawn.body.groupId = 0;
-            pawn.possessor = null;
-
-            this.possession = null;
-        }
-
-        private translateBallAroundPlayer(ball: Base.Ball, direction: number) {
+        private translatePossessionAroundPlayer(ball: Base.Ball, direction: number) {
             var desiredBallLocation: any = {
                 x: this.body.position.x + Math.cos(direction) * (this.radius + ball.radius + 5),
                 y: this.body.position.y + Math.sin(direction) * (this.radius + ball.radius + 5)
@@ -234,7 +235,7 @@
         }
 
         private canLunge(): boolean {
-            return !this.possession && (this.game.timestamp - this.lastLunged) > this.lungeCooldown;
+            return !this.equipment && !this.possession && (this.game.timestamp - this.lastLunged) > this.lungeCooldown;
         }
 
         private isAttacking(): boolean {

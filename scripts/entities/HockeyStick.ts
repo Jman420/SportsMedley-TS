@@ -7,7 +7,6 @@
             super(game);
 
             this.body = this.createBody(x, y);
-            Matter.World.add(this.world, this.body);
         }
 
         public tick(tickEvent: any) {
@@ -18,7 +17,7 @@
         }
 
         public canEquip(): boolean {
-            return this.game.gameType == 'Hockey' || this.game.gameType == 'Bonus';
+            return (this.game.gameType == 'Hockey' || this.game.gameType == 'Bonus') && !this.holder;
         }
 
         public canSwing(): boolean {

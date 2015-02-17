@@ -18,12 +18,16 @@
         public tick(tickEvent: any): void {
             this.updateTexture();
 
-            if (this.holder && (this.game.gameType == 'Kill The Carrier' || this.game.gameType == 'Bonus')) {
-                this.lastHeld = tickEvent.timestamp;
-                if (tickEvent.timestamp - this.lastPoint > this.pointsPerSecond * 1000) {
-                    this.game.score(this.holder.team, 1 / 30);
-                    this.lastPoint = tickEvent.timestamp;
-                }
+            if (this.holder) {
+                if (this.game.gameType == 'Kill The Carrier' || this.game.gameType == 'Bonus') {
+                    this.lastHeld = tickEvent.timestamp;
+                    if (tickEvent.timestamp - this.lastPoint > this.pointsPerSecond * 1000) {
+                        this.game.score(this.holder.team, 1 / 30);
+                        this.lastPoint = tickEvent.timestamp;
+                    }
+                } else {
+                    this.holder.dropEquipment();
+                }  
             }
         }
 

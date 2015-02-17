@@ -13,14 +13,15 @@
         }
 
         public tick(): void {
-            if (this.game.gameType == 'Dodgeball' || this.game.gameType == 'Bonus')
-                this.body.render.sprite.texture = this.body.speed < this.hitMinSpeed ? './assets/images/dodgeball-active.png' : './assets/images/dodgeball-thrown.png';
-            else
-                this.body.render.sprite.texture = './assets/images/dodgeball-inactive.png';
+            if (this.possessor && this.game.gameType != "Dodgeball" && this.game.gameType != "Bonus") {
+                this.possessor.releasePossession();
+            }
+
+            this.updateTexture();
         }
 
         public canGrab(): boolean {
-            return (this.game.gameType == 'Dodgeball' || this.game.gameType == 'Bonus') && this.body.speed < this.hitMinSpeed;
+            return (this.game.gameType == 'Dodgeball' || this.game.gameType == 'Bonus') && this.isThrown();
         }
 
         public handleCollision(otherThing: any): void {
@@ -33,7 +34,7 @@
             if (this.game.gameType != 'Dodgeball' && this.game.gameType != 'Bonus')
                 return;
 
-            if (this.canGrab())
+            if (!this.isThrown())
                 return;
 
             if (this.lastThrownBy && this.lastThrownBy.team != player.team) {
@@ -41,6 +42,17 @@
                 this.game.playSound('dodgeball-score');
                 this.game.score(this.lastThrownBy.team, 1 / 20);
             }
+        }
+
+        private updateTexture(): void {
+            if (this.game.gameType == 'Dodgeball' || this.game.gameType == 'Bonus')
+                this.body.render.sprite.texture = this.body.speed < this.hitMinSpeed ? './assets/images/dodgeball-active.png' : './assets/images/dodgeball-thrown.png';
+            else
+                this.body.render.sprite.texture = './assets/images/dodgeball-inactive.png';
+        }
+
+        private isThrown(): boolean {
+            return this.body.speed < this.hitMinSpeed;
         }
     }
 }
