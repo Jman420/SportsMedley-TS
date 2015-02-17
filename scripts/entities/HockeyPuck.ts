@@ -1,8 +1,11 @@
 ﻿module SportsMedley.Entities {
     export class HockeyPuck extends Base.Ball {
-        static puckRadius: number = 11;
-        radius: number = HockeyPuck.puckRadius;
-        bodyOptions: any = { density: 0.0005 };
+        static radius: number = 11;
+        static bodyOptions: any = { density: 0.0005 };
+
+        constructor(game: SportsMedleyGame, x: number, y: number) {
+            super(game, x, y, HockeyPuck.radius, HockeyPuck.bodyOptions);
+        }
 
         public tick(tickEvent: any) {
             super.tick(tickEvent);

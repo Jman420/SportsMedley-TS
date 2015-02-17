@@ -1,15 +1,16 @@
 ﻿module SportsMedley.Entities {
     export class Dodgeball extends Base.Ball {
-        static dodgeballRadius: number = 10;
-        hitMinSpeed: number = 5;
-        radius: number = Dodgeball.dodgeballRadius;
-        bodyOptions: any = {
+        static radius: number = 10;
+        static bodyOptions: any = {
             restitution: 0.2,
-            friction: 1,
-            render: {
-                sprite: { texture: './assets/images/dodgeball-inactive.png' }
-            }
+            friction: 1
         };
+
+        hitMinSpeed: number = 5;
+
+        constructor(game: SportsMedleyGame, x: number, y: number) {
+            super(game, x, y, Dodgeball.radius, Dodgeball.bodyOptions);
+        }
 
         public tick(): void {
             if (this.game.gameType == 'Dodgeball' || this.game.gameType == 'Bonus')

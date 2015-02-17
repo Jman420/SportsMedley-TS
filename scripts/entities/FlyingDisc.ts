@@ -1,15 +1,15 @@
 ﻿module SportsMedley.Entities {
     export class FlyingDisc extends Base.Ball {
-        static discRadius: number = 10;
+        static radius: number = 10;
+        static bodyOptions: any = {};
 
-        bodyOptions: any = { restitution: 0 };
+    bodyOptions: any = { restitution: 0 };
         landedSpeed: number = 5;
-        radius: number = FlyingDisc.discRadius;
 
         possessor: Player;
 
         constructor(game: SportsMedleyGame, x: number, y: number) {
-            super(game, x, y);
+            super(game, x, y, FlyingDisc.radius, FlyingDisc.bodyOptions);
 
             this.possessor = null;
         }

@@ -1,16 +1,19 @@
 ﻿module SportsMedley.Entities.Base {
     export class Ball extends Pawn {
-        radius: number = 0;
-        bodyOptions = {};
+        radius: number;
+        bodyOptions: any;
 
         body: any;
         lastThrownBy: Player;
         possessor: Player;
 
-        constructor(game: SportsMedleyGame, x: number, y: number) {
+        constructor(game: SportsMedleyGame, x: number, y: number, radius: number, bodyOptions: any) {
             super(game);
 
-            this.body = this.createBody(x, y);
+            this.radius = radius;
+            this.bodyOptions = bodyOptions;
+
+            this.body = this.createBody(x, y, radius, bodyOptions);
             this.lastThrownBy = null;
             this.possessor = null;
         }
@@ -30,8 +33,8 @@
             }
         }
 
-        public createBody(x: number, y: number): any {
-            var newBody = Matter.Bodies.circle(x, y, this.radius, this.bodyOptions);
+        public createBody(x: number, y: number, radius: number, bodyOptions: any): any {
+            var newBody = Matter.Bodies.circle(x, y, radius, bodyOptions);
             newBody.pawn = this;
 
             return newBody;

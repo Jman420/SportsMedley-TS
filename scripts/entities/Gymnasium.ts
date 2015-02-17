@@ -62,9 +62,9 @@
             var randomSide = Math.random();
 
             if (randomSide < 1 / 3) {
-                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.wallThickness + FlyingDisc.discRadius);
+                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.wallThickness + FlyingDisc.radius);
             } else if (randomSide > 1 / 3 && randomSide < 2 / 3) {
-                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.gymHeight - this.wallThickness - FlyingDisc.discRadius);
+                newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.gymHeight - this.wallThickness - FlyingDisc.radius);
             } else {
                 newFlyingDisc = new FlyingDisc(this.game, this.centerX, this.centerY);
             }
