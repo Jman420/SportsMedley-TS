@@ -6,11 +6,7 @@
         constructor(game: SportsMedleyGame, x: number, y: number) {
             super(game, x, y, HockeyPuck.radius, HockeyPuck.bodyOptions);
         }
-
-        public canGrab(): boolean {
-            return false;
-        }
-
+        
         public tick(tickEvent: any) {
             super.tick(tickEvent);
             this.updateTexture();

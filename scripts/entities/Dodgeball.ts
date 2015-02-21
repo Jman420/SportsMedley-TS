@@ -21,7 +21,7 @@
         }
 
         public canGrab(): boolean {
-            return this.isActive() && !super.canGrab() && !this.isThrown();
+            return this.isActive() && !this.possessor && !this.isThrown();
         }
 
         public handleCollision(otherThing: any): void {
