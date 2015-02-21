@@ -1,4 +1,9 @@
 ﻿module SportsMedley.Entities {
+    /// <reference path="base/Pawn.ts"/>
+    /// <reference path="base/Equipment.ts"/>
+    /// <reference path="../input/Gamepad.ts"/>
+    /// <reference path="../SportsMedleyGame.ts"/>
+    /// <reference path="FlyingDisc.ts"/>
     export class Player extends Base.Pawn {
         walkForce: number = 0.01;
         framesBetweenWalk: number = 5;

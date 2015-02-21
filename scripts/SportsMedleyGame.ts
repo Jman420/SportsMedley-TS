@@ -1,10 +1,13 @@
 ﻿declare var Matter: any;
 
 module SportsMedley {
+    /// <reference path="input/GamepadListener.ts"/>
+    /// <reference path="entities/Gymnasium.ts"/>
+    /// <reference path="entities/Player.ts"/>
     export class SportsMedleyGame {
-        gameTypes: string[] = ["Hockey", "Ultimate Flying Disc", "Dodgeball", "Kill The Carrier"];
-        attentionSpan: number = 25000;
-        totalRounds: number = 11;
+        static gameTypes: string[] = ["Hockey", "Ultimate Flying Disc", "Dodgeball", "Kill The Carrier"];
+        static attentionSpan: number = 25000;
+        static totalRounds: number = 11;
 
         domNode: HTMLElement;
         engine: any;
@@ -106,7 +109,7 @@ module SportsMedley {
                 { Total: 0, Bonus: 0 },
                 { Total: 0, Bonus: 0 }
             ];
-            this.gameTypes.forEach((gameType: string) => {
+            SportsMedleyGame.gameTypes.forEach((gameType: string) => {
                 this.scores[0][gameType] = 0;
                 this.scores[1][gameType] = 0;
             });
@@ -131,8 +134,8 @@ module SportsMedley {
                 g.tick(tickEvent);
             });
 
-            if (!this.lastGameChangedAt || this.timestamp - this.lastGameChangedAt > this.attentionSpan) {
-                if (this.rounds >= this.totalRounds)
+            if (!this.lastGameChangedAt || this.timestamp - this.lastGameChangedAt > SportsMedleyGame.attentionSpan) {
+                if (this.rounds >= SportsMedleyGame.totalRounds)
                     this.endGame();
                 else
                     this.chooseAGame();
@@ -177,9 +180,9 @@ module SportsMedley {
         }
 
         private chooseAGame(): void {
-            if (this.rounds < this.totalRounds - 1) {
-                var i = Math.floor(Math.random() * this.gameTypes.length);
-                this.gameType = this.gameTypes[i];
+            if (this.rounds < SportsMedleyGame.totalRounds - 1) {
+                var i = Math.floor(Math.random() * SportsMedleyGame.gameTypes.length);
+                this.gameType = SportsMedleyGame.gameTypes[i];
             } else
                 this.gameType = 'Bonus';
 

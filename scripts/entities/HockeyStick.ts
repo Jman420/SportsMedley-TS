@@ -1,4 +1,6 @@
 ﻿module SportsMedley.Entities {
+    /// <reference path="base/Equipment.ts"/>
+    /// <reference path="../SportsMedleyGame.ts"/>
     export class HockeyStick extends Base.Equipment {
         swingRange: number = 100;
         swingForce: number = 0.02;

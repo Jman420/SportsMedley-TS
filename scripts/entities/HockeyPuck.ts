@@ -1,4 +1,6 @@
 ﻿module SportsMedley.Entities {
+    /// <reference path="base/Ball.ts"/>
+    /// <reference path="../SportsMedleyGame.ts"/>
     export class HockeyPuck extends Base.Ball {
         static radius: number = 11;
         static bodyOptions: any = { density: 0.0005 };

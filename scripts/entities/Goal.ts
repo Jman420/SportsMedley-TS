@@ -1,4 +1,7 @@
 ﻿module SportsMedley.Entities {
+    /// <reference path="base/Pawn.ts"/>
+    /// <reference path="../SportsMedleyGame.ts"/>
+    /// <reference path="base/Wall.ts"/>
     export class Goal extends Base.Pawn {
         thickness: number = 30;
         width: number = 75;

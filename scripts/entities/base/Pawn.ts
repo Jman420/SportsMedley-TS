@@ -1,4 +1,5 @@
 ﻿module SportsMedley.Entities.Base {
+    /// <reference path="../SportsMedleyGame.ts"/>
     export class Pawn {
         game: SportsMedleyGame;
         world: any;

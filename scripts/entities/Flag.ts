@@ -1,4 +1,7 @@
 ﻿module SportsMedley.Entities {
+    /// <reference path="base/Equipment.ts"/>
+    /// <reference path="../SportsMedleyGame.ts"/>
+
     export class Flag extends Base.Equipment {
         pointsPerSecond: number = 1;
         pickUpCooldown: number = 300;

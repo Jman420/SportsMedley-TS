@@ -1,4 +1,7 @@
 ﻿module SportsMedley.Entities.Base {
+    /// <reference path="Pawn.ts"/>
+    /// <reference path="../Player.ts"/>
+    /// <reference path="../SportsMedleyGame.ts"/>
     export class Ball extends Pawn {
         radius: number;
         bodyOptions: any;

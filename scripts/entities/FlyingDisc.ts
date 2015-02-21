@@ -1,11 +1,12 @@
 ﻿module SportsMedley.Entities {
+    /// <reference path="base/Ball.ts"/>
+    /// <reference path="../SportsMedleyGame.ts"/>
+    /// <reference path="Player.ts"/>
     export class FlyingDisc extends Base.Ball {
         static radius: number = 10;
         static bodyOptions: any = {};
 
-    bodyOptions: any = { restitution: 0 };
         landedSpeed: number = 5;
-
         possessor: Player;
 
         constructor(game: SportsMedleyGame, x: number, y: number) {

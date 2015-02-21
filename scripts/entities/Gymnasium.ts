@@ -1,4 +1,12 @@
 ﻿module SportsMedley.Entities {
+    /// <reference path="../SportsMedleyGame.ts"/>
+    /// <reference path="base/Wall.ts"/>
+    /// <reference path="Goal.ts"/>
+    /// <reference path="Dodgeball.ts"/>
+    /// <reference path="Flag.ts"/>
+    /// <reference path="FlyingDisc.ts"/>
+    /// <reference path="HockeyPuck.ts"/>
+    /// <reference path="HockeyStick.ts"/>
     export class Gymnasium {
         wallThickness: number = 25;
 
