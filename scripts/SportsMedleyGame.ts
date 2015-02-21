@@ -1,9 +1,6 @@
 ﻿declare var Matter: any;
 
 module SportsMedley {
-    /// <reference path="input/GamepadListener.ts"/>
-    /// <reference path="entities/Gymnasium.ts"/>
-    /// <reference path="entities/Player.ts"/>
     export class SportsMedleyGame {
         static gameTypes: string[] = ["Hockey", "Ultimate Flying Disc", "Dodgeball", "Kill The Carrier"];
         static attentionSpan: number = 25000;

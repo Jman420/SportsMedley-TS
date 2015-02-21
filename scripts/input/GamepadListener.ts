@@ -1,6 +1,4 @@
 ﻿module SportsMedley.Input {
-    /// <reference path="../SportsMedleyGame.ts"/>
-    /// <reference path="../entities/Player.ts"/>
     export class GamepadListener {
         leftJoystickLayouts: Joystick[] = [
             new Joystick(0, 1),

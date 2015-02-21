@@ -1,7 +1,4 @@
 ﻿module SportsMedley.Entities {
-    /// <reference path="base/Ball.ts"/>
-    /// <reference path="../SportsMedleyGame.ts"/>
-    /// <reference path="Player.ts"/>
     export class Dodgeball extends Base.Ball {
         static radius: number = 10;
         static bodyOptions: any = {

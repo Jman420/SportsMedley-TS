@@ -1,6 +1,4 @@
 ﻿module SportsMedley.Entities.Base {
-    /// <reference path="Pawn.ts"/>
-    /// <reference path="../Player.ts"/>
     export class Equipment extends Pawn {
         holder: Player;
 

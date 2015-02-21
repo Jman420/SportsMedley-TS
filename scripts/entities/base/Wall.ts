@@ -1,6 +1,4 @@
 ﻿module SportsMedley.Entities.Base {
-    /// <reference path="Pawn.ts"/>
-    /// <reference path="../SportsMedleyGame.ts"/>
     export class Wall extends Pawn {
         constructor(game: SportsMedleyGame, x: number, y: number, width: number, height: number) {
             super(game);

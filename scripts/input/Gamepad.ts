@@ -1,5 +1,4 @@
 ﻿module SportsMedley.Input {
-    /// <reference path="Joystick.ts"/>
     export class Gamepad {
         leftJoystick: Joystick;
         rightJoystick: Joystick;
