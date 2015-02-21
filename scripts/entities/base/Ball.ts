@@ -19,7 +19,7 @@
         }
 
         public canGrab(): boolean {
-            return false;
+            return !this.possessor;
         }
 
         public tick(tickEvent: any): void {

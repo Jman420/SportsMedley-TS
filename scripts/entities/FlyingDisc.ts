@@ -34,7 +34,7 @@
         }
 
         public canGrab(): boolean {
-            return this.isActive() && !this.possessor;
+            return this.isActive() && !super.canGrab();
         }
 
         private updateTexture(): void {
