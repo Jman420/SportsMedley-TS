@@ -165,12 +165,21 @@ module SportsMedley {
                     context.textAlign = "center";
                     context.textBaseline = "middle";
 
-                    if (player.equipment && player.equipment instanceof Entities.Flag) {
-                        context.strokeStyle = "lime";
-                        context.lineWidth = 4;
-                        context.beginPath();
-                        context.arc(player.body.position.x, player.body.position.y, 24, 0, 2 * Math.PI, false);
-                        context.stroke();
+                    if (player.equipment) {
+                        if (player.equipment instanceof Entities.Flag) {
+                            context.strokeStyle = "lime";
+                            context.lineWidth = 4;
+                            context.beginPath();
+                            context.arc(player.body.position.x, player.body.position.y, 24, 0, 2 * Math.PI, false);
+                            context.stroke();
+                        }
+                        else if (player.equipment instanceof Entities.HockeyStick) {
+                            context.strokeStyle = "black";
+                            context.lineWidth = 4;
+                            context.beginPath();
+                            context.arc(player.body.position.x, player.body.position.y, 24, 0, 2 * Math.PI, false);
+                            context.stroke();
+                        }
                     }
                 }
             }
